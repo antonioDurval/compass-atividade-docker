@@ -1,0 +1,37 @@
+version: '3.9'
+
+networks:
+  wordpress:
+
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: antoim
+      WORDPRESS_DB_PASSWORD: fa9sd84f98ga
+      WORDPRESS_DB_NAME: wordpress
+    networks:
+      - wordpress
+    volumes:
+      - /nfs/antonio_durval/wordpress:/var/www/html
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: minhasenha
+      MYSQL_PASSWORD: fa9sd84f98ga
+      MYSQL_USER: antoim
+      MYSQL_DATABASE: wordpress
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+    networks:
+      - wordpress
+    volumes:
+      - /nfs/antonio_durval/mysql:/var/lib/mysql
