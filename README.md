@@ -145,3 +145,19 @@ Altere o grupo de segurança Default
 - Vá em detalhes avançados
 - Copie o conteúdo do arquivo user_data.sh e cole em Dados do usuário
 - Verifique todos os dados preenchidos e Clique em Executar Instância
+
+## Caso seja necessario a criação de um novo Load Balancer
+### Configurando o wp-config
+- Como a montagem já é realizada através do user_data, faça a adição de duas novas linhas.
+- Use: vim /nfs/antonio_durval/wordpress/wp-config.php
+- Cole as seguintes linhas:
+  <br><strong>define( 'WP_SITEURL', getenv_docker('WORDPRESS_SITEURL', 'localhost'));</strong><br>
+  <strong>define( 'WP_HOME', getenv_docker('WORDPRESS_SITEURL', 'localhost'));</strong><br>
+- Salve o arquivo
+### Configurando o docker-compose.yml
+- Vá até o repostiorio que foi clonado;
+- Por exemplo: vim compass-atividade-docker/[docker-compose.yml](https://github.com/antonioDurval/compass-atividade-docker/blob/main/docker-compose.yml)
+- Insira a seguite linha(Abaixo da linha 15(<strong>environment</strong> do serviço wordpress)):
+  <br><strong>WORDPRESS_SITEURL: http://DNS_name do seu Load Balancer</strong>
+- Após isso suba os conteiners novamente.
+ 
