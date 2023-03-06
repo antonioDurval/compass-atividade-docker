@@ -80,3 +80,28 @@ Altere o grupo de segurança Default
       <td>sg-01161baacaf672f53</td>
     </tr>
 </table>
+
+## Criando um Grupo de Destino
+- Selecione o serviço de EC2;
+- Clique em Grupos de Destino;
+- Clique em Create target group;
+- Escolha o tipo de destino, selecione: <strong>Instâncias</strong>;
+- Preencha o Target group name;
+- Selecione a VPC desejada;
+- Vá até Configurações avançadas de verificação de integridade e no campo Códigos de sucesso informe: <strong>200,302</strong>
+- Clique em proximo;
+- Clique em criar grupo de destino;
+- Após ter criado o Grupo de destino, criaremos o nosso Balanceador de carga.
+
+## Criando um Balanceador de Carga
+- Selecione o serviço de EC2;
+- Clique em Load balancers;
+- Clique em Create load balance;
+- Selecione o Application Load Balancer(ALB);
+- Preencha o nome do Load Balancer;
+- No esquema selecione o <strong>internet-facing</strong>
+- No <strong>Network mapping</strong> selecione a VPC desejada;
+- Selecione 2 subnets: <strong>us-east-1a (use1-az2)</strong> e <strong>us-east-1b (use1-az4)</strong>
+- Em <strong>Grupos de segurança</strong> selecione o Grupo de Segurança criado para o Balanceador de Carga.
+- Em Listener <strong>HTTP:80</strong> no campo Ação padrão selecione o Grupo de Destino criado.
+- Clique em Create load balancer.
