@@ -105,3 +105,43 @@ Altere o grupo de segurança Default
 - Em <strong>Grupos de segurança</strong> selecione o Grupo de Segurança criado para o Balanceador de Carga.
 - Em Listener <strong>HTTP:80</strong> no campo Ação padrão selecione o Grupo de Destino criado.
 - Clique em Create load balancer.
+
+## Criação da Instância
+- Clique em instâncias, executar instância
+### Nomes e Tags:
+- Crie 3 Tags
+<table>
+    <tr>
+      <th>Chave</th>
+      <th>Valor</th>
+    </tr>
+    <tr>
+      <td>Project</td>
+      <td>PB</td>
+    </tr>
+    <tr>
+      <td>CostCenter</td>
+      <td>PBCompass</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>Seu nome</td>
+    </tr>
+</table>
+
+### Selecione a imagem de aplicação:
+- Amazon Linux 2
+### Selecione o tipo da instância:
+- t3.small
+### Selecionar/Criar o Key pair(login):
+- Caso já tenha uma key pair não é necessario a criação de outra.
+- Caso não possua, clique em Create new key pair, dê um nome a ela e faça o download do arquivo .pem ou .ppk(Putty)
+### Edite as configurações de Rede:
+- <strong>VPC: </strong>Selecione a VPC dejesada
+- <strong>Sub-rede:</strong> Selecione a sub-rede criada
+- Selecione um grupo de segurança existente(Default, siga o passo a passo no tópico: <strong>Alterando Grupo de Segurança</strong>)
+### Configurar Armazenamento:
+- Crie um disco GP2 de 8GiB
+- Vá em detalhes avançados
+- Copie o conteúdo do arquivo user_data.sh e cole em Dados do usuário
+- Verifique todos os dados preenchidos e Clique em Executar Instância
